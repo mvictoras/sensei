@@ -2,121 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kitware.github.io/sensei/tutorials/sc18.html</loc>
+    
+    <lastmod>2018-11-08T06:33:19.543Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/sensei/tutorials/index.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.992Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.542Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/sc17.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.992Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/tutorials/sc18.html</loc>
-    
-    <lastmod>2018-11-08T06:10:29.992Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.542Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/software.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/learn-more/papers.html</loc>
-    
-    <lastmod>2018-11-08T06:10:29.990Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/learn-more/participants.html</loc>
-    
-    <lastmod>2018-11-08T06:10:29.990Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.541Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/presentations.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.990Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.541Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/learn-more/about.html</loc>
+    <loc>https://kitware.github.io/sensei/learn-more/participants.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.989Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/learn-more/papers.html</loc>
+    
+    <lastmod>2018-11-08T06:33:19.540Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/index.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.989Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/develop/testing.html</loc>
-    
-    <lastmod>2018-11-08T06:10:29.988Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.540Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/index.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.988Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.539Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/develop/index.html</loc>
+    <loc>https://kitware.github.io/sensei/learn-more/about.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.987Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.539Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/testing.html</loc>
+    
+    <lastmod>2018-11-08T06:33:19.538Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/python-analysis.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.987Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.538Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/develop/adios-schema.html</loc>
+    <loc>https://kitware.github.io/sensei/develop/index.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.986Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.537Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/contribute.html</loc>
     
-    <lastmod>2018-11-08T06:10:29.986Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.537Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/2018/05/04/20180504-website/</loc>
     
-    <lastmod>2018-11-08T06:10:29.985Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/adios-schema.html</loc>
+    
+    <lastmod>2018-11-08T06:33:19.536Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/2016/04/28/kw-doc/</loc>
     
-    <lastmod>2018-11-08T06:10:29.968Z</lastmod>
+    <lastmod>2018-11-08T06:33:19.518Z</lastmod>
     
   </url>
   
