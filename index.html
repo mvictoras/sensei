@@ -46,12 +46,10 @@
 <meta property="og:site_name" content="sensei">
 <meta property="og:description" content="SENSEI in situ">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://data.kitware.com/api/v1/item/5bd137508d777f06b936b71d/download">
-<meta property="og:updated_time" content="2018-11-11T16:04:39.833Z">
+<meta property="og:updated_time" content="2019-02-07T20:09:22.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sensei">
 <meta name="twitter:description" content="SENSEI in situ">
-<meta name="twitter:image" content="https://data.kitware.com/api/v1/item/5bd137508d777f06b936b71d/download">
   <!-- Google Analytics -->
   
 </head>
@@ -87,6 +85,14 @@
       <h2 id="banner-title">SENSEI ∙  Scalable in situ analysis and visualization</h2>
       <div id="banner-start">
         
+          <img id="banner-start-image" src="https://data.kitware.com/api/v1/file/5c5c7a7d8d777f072b38863b/download">
+          
+            <div id="banner-start-captionbox"><b> About this image: &nbsp;</b>
+              <span id="banner-start-caption">ParaView/Catalyst on 256,000 processes on Mira.</span>
+            </div>
+          
+        
+        
           <span id="banner-start-command">git clone https://github.com/Kitware/sensei.git</span>
         
       </div>
@@ -96,36 +102,46 @@
 <div id="content-wrap">
   <div class="wrapper">
     <div class="inner">
-      <ul id="intro-feature-list"><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-cloud-download"></i></div><h3 class="intro-feature-title"><a href="https://gitlab.kitware.com/sensei/sensei/tags" class="link" target="_blank" rel="noopener">Releases</a></h3><p class="intro-feature-desc">SENSEI source code releases are tagged and downloadable here.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-book"></i></div><h3 class="intro-feature-title"><a href="/tutorials" class="link">Tutorials</a></h3><p class="intro-feature-desc">Tutorial materials, including slides and a virtual machine presented at Supercomputing.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-tachometer"></i></div><h3 class="intro-feature-title"><a href="http://cdash.hpcvis.com/index.php?project=SENSEI" class="link" target="_blank" rel="noopener">Testing dashboard</a></h3><p class="intro-feature-desc">SENSEI is tested as commits are merged.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-bug"></i></div><h3 class="intro-feature-title"><a href="http://gitlab.kitware.com/sensei/sensei/issues" class="link" target="_blank" rel="noopener">Issues</a></h3><p class="intro-feature-desc">Report a bug or request a feature.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-comments-o"></i></div><h3 class="intro-feature-title"><a href="http://discourse.kitware.com/c/sensei" class="link" target="_blank" rel="noopener">Community &amp; Feedback</a></h3><p class="intro-feature-desc">Tell us what you think!</p></div></li></ul><div id="intro-get-started-wrap"><a href="/learn-more/index.html" id="intro-get-started-link">Learn more</a></div><div id="gallery"><img src="https://data.kitware.com/api/v1/item/5bd137508d777f06b936b71d/download" style="width: 100%;"><p class="intro-feature-desc"><span><b>About this image: &nbsp;</b></span><span class="caption">ParaView/Catalyst on 256,000 processes on Mira.</span></p></div><script>function getRandomInt(min, max) {
+      <ul id="intro-feature-list"><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-cloud-download"></i></div><h3 class="intro-feature-title"><a href="https://gitlab.kitware.com/sensei/sensei/tags" class="link" target="_blank" rel="noopener">Releases</a></h3><p class="intro-feature-desc">SENSEI source code releases are tagged and downloadable here.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-book"></i></div><h3 class="intro-feature-title"><a href="/tutorials" class="link">Tutorials</a></h3><p class="intro-feature-desc">Tutorial materials, including slides and a virtual machine presented at Supercomputing.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-tachometer"></i></div><h3 class="intro-feature-title"><a href="http://cdash.hpcvis.com/index.php?project=SENSEI" class="link" target="_blank" rel="noopener">Testing dashboard</a></h3><p class="intro-feature-desc">SENSEI is tested as commits are merged.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-bug"></i></div><h3 class="intro-feature-title"><a href="http://gitlab.kitware.com/sensei/sensei/issues" class="link" target="_blank" rel="noopener">Issues</a></h3><p class="intro-feature-desc">Report a bug or request a feature.</p></div></li><li class="intro-feature-wrap"><div class="intro-feature"><div class="intro-feature-icon"><i class="fa fa-comments-o"></i></div><h3 class="intro-feature-title"><a href="http://discourse.kitware.com/c/sensei" class="link" target="_blank" rel="noopener">Community &amp; Feedback</a></h3><p class="intro-feature-desc">Tell us what you think!</p></div></li></ul><div id="intro-get-started-wrap"><a href="/learn-more/index.html" id="intro-get-started-link">Learn more</a></div><script>function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
-var imgdiv = document.querySelector('div#gallery');
-var imgele = imgdiv.querySelector('img');
-var imgcap = imgdiv.querySelector('span.caption');
+var imgele = document.querySelector('img#banner-start-image');
+var imgcap = document.querySelector('span#banner-start-caption');
 var images = [
-  { url: 'https://data.kitware.com/api/v1/item/5bd137508d777f06b936b71d/download',
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7d8d777f072b38863b/download',
     caption: 'ParaView/Catalyst on 256,000 processes on Mira.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd137368d777f06b936b6d9/download',
-    caption: 'Interactive in transit visualization of a 172k atom simulation of silicene formation with 128 LAMMPS ranks sending to 16 renderer ranks, all executed on Theta at the Argonne Leadership Computing Facility. OSPRay is used as the rendering engine.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd1377b8d777f06b936b7ab/download',
-    caption: 'A Nek5000 simulation instrumented with SENSEI to render via libSim.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd137758d777f06b936b795/download',
-    caption: 'Downstream cross flow cut-planes at various positions of the NREL WindPACT-1.5MW wid turbine.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd1372d8d777f06b936b6bf/download',
-    caption: 'An iso-contour of the velocity magnitude demonstrating the vortex structure evolution of the NREL WindPACT-1.5WM wind turbine. The data extract were creating using in-situ in Libsim, and the data was post-processed using VisIt.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd137608d777f06b936b75b/download',
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7a8d777f072b388623/download',
+    caption: 'In situ rendering of relativistic Laser Plasma Accelerator(LPA) simulation with WarpX on NERSC Cori. (ParaView/Catalyst)' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7b8d777f072b38862b/download',
+    caption: 'In situ rendering of relativistic Laser Plasma Accelerator(LPA) simulation with WarpX on NERSC Cori. (VisIt/libSim)' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7b8d777f072b388633/download',
     caption: 'Ghost cell information can be requested so isocontouring and other operations are rendered properly.' },
-  { url: 'https://data.kitware.com/api/v1/item/5bd137588d777f06b936b73f/download',
-    caption: 'In situ rendering of the AMReX advection mini-app running on Cori. The Python based analysis code uses Yt, a popular AMR aware rendering suite written exclusively in Python.' }
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7d8d777f072b388643/download',
+    caption: 'In situ rendering of a Rayleigh-Taylor instability computed with the AMReX IAM compressible Navier-Stokes simulation code with 4 levels of refinement using 2048 cores on NERSC Cori. (ParaView/Catalyst)' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7e8d777f072b38864b/download',
+    caption: 'In situ rendering of a Rayleigh-Taylor instability computed with the AMReX IAM compressible Navier-Stokes simulation code with 4 levels of refinement using 2048 cores on NERSC Cori. (VisIt/libSim)' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a7e8d777f072b388653/download',
+    caption: 'In situ rendering of the AMReX advection mini-app running on Cori. The Python based analysis code uses Yt, a popular AMR aware rendering suite written exclusively in Python.' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a808d777f072b38865b/download',
+    caption: 'Interactive in transit visualization of a 172k atom simulation of silicene formation with 128 LAMMPS ranks sending to 16 renderer ranks, all executed on Theta at the Argonne Leadership Computing Facility. OSPRay is used as the rendering engine.' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a808d777f072b388663/download',
+    caption: 'A Nek5000 simulation instrumented with SENSEI to render via libSim.' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a818d777f072b38866b/download',
+    caption: 'An iso-contour of the velocity magnitude demonstrating the vortex structure evolution of the NREL WindPACT-1.5WM wind turbine. The data extract were creating using in-situ in Libsim, and the data was post-processed using VisIt.' },
+  { url: 'https://data.kitware.com/api/v1/file/5c5c7a828d777f072b388673/download',
+    caption: 'Downstream cross flow cut-planes at various positions of the NREL WindPACT-1.5MW wid turbine.' }
 ];
+// Start with a random image (other than the default), then proceed sequentially.
 var imageIdx = getRandomInt(1, images.length);
+imgele.onload = function () { imgcap.innerText = images[imgele.getAttribute('idx')].caption; }
+imgele.setAttribute('idx', 0); // Page load starts with entry 0.
 function nextImage() {
-  imageIdxDelta = getRandomInt(1, images.length);
+  imageIdxDelta = 1;
   imageIdx = (imageIdx + imageIdxDelta) % images.length;
+  imgele.setAttribute('idx', imageIdx);
   imgele.setAttribute('src', images[imageIdx].url);
-  imgcap.innerText = images[imageIdx].caption;
 }
 var timerId = setInterval(nextImage, 8000);</script>
     </div>
@@ -135,7 +151,7 @@ var timerId = setInterval(nextImage, 8000);</script>
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2018 <a href="https://www.kitware.com/" target="_blank">sensei</a>
+      &copy; 2019 <a href="https://www.kitware.com/" target="_blank">sensei</a>
     </div>
     <div id="footer-links">
       <a href="https://github.com/kitware/sensei" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
