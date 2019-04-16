@@ -4,119 +4,189 @@
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/sc18.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.429Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/learn-more/presentations.html</loc>
-    
-    <lastmod>2019-02-07T20:09:22.429Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/learn-more/software.html</loc>
-    
-    <lastmod>2019-02-07T20:09:22.429Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/tutorials/sc17.html</loc>
-    
-    <lastmod>2019-02-07T20:09:22.429Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.858Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/index.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.429Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.857Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/learn-more/participants.html</loc>
+    <loc>https://kitware.github.io/sensei/tutorials/sc17.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.857Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/learn-more/about.html</loc>
+    <loc>https://kitware.github.io/sensei/learn-more/presentations.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.855Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/learn-more/software.html</loc>
+    
+    <lastmod>2019-04-16T12:55:07.855Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/index.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.854Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/develop/adios-schema.html</loc>
+    <loc>https://kitware.github.io/sensei/learn-more/participants.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/develop/testing.html</loc>
-    
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/index.html</loc>
-    
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.854Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/papers.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.854Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/sensei/develop/contribute.html</loc>
+    <loc>https://kitware.github.io/sensei/index.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/learn-more/about.html</loc>
+    
+    <lastmod>2019-04-16T12:55:07.853Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/index.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.852Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/python-analysis.html</loc>
     
-    <lastmod>2019-02-07T20:09:22.428Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.852Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/testing.html</loc>
+    
+    <lastmod>2019-04-16T12:55:07.852Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/contribute.html</loc>
+    
+    <lastmod>2019-04-16T12:55:07.851Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/adios-schema.html</loc>
+    
+    <lastmod>2019-04-16T12:55:07.851Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/2018/05/04/20180504-website/</loc>
     
-    <lastmod>2019-02-07T20:09:22.427Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.850Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/2016/04/28/kw-doc/</loc>
     
-    <lastmod>2019-02-07T20:09:22.422Z</lastmod>
+    <lastmod>2019-04-16T12:55:07.834Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/run-oscillator.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.783Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/run-newton.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.782Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/run-miniapps.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.782Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/index.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.781Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/run-amrexad.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.781Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/cfg-histogram.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.780Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/cfg-libsim.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.780Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/cfg-catalyst-python.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/cfg-catalyst-slice.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/cookbook/cfg-autocorrelation.html</loc>
+    
+    <lastmod>2018-10-25T03:30:47.778Z</lastmod>
     
   </url>
   
