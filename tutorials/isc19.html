@@ -2,15 +2,15 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Configuring Catalyst Python Scripts | sensei</title>
+  <title>sensei</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://kitware.github.io/sensei/cookbook/cfg-catalyst-python.html">
+  <link rel="canonical" href="https://kitware.github.io/sensei/tutorials/isc19.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://kitware.github.io/sensei/cookbook/cfg-catalyst-python.html">
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/sensei/tutorials/isc19.html">
     
   
   <!-- Icon -->
@@ -39,17 +39,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="sensei">
   <!-- Open Graph -->
-  <meta name="description" content="If you are willing to link your simulation to a Python-enabled build of ParaView/Catalyst (this does increase binary size), you can have ParaView create a script that will reproduce any visualization">
+  <meta name="description" content="ISC 2019In 2019, we presented a half-day tutorial on SENSEI at the ISC HPC conference. The course materials are available here:  Slides (PDF, 57 MB) Virtual machine disk image (OVA, 8.9GB)  The disk i">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Configuring Catalyst Python Scripts">
-<meta property="og:url" content="https://kitware.github.io/sensei/cookbook/cfg-catalyst-python.html">
+<meta property="og:title" content="sensei">
+<meta property="og:url" content="https://kitware.github.io/sensei/tutorials/isc19.html">
 <meta property="og:site_name" content="sensei">
-<meta property="og:description" content="If you are willing to link your simulation to a Python-enabled build of ParaView/Catalyst (this does increase binary size), you can have ParaView create a script that will reproduce any visualization">
+<meta property="og:description" content="ISC 2019In 2019, we presented a half-day tutorial on SENSEI at the ISC HPC conference. The course materials are available here:  Slides (PDF, 57 MB) Virtual machine disk image (OVA, 8.9GB)  The disk i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-25T03:30:47.779Z">
+<meta property="og:updated_time" content="2019-06-05T17:29:43.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Configuring Catalyst Python Scripts">
-<meta name="twitter:description" content="If you are willing to link your simulation to a Python-enabled build of ParaView/Catalyst (this does increase binary size), you can have ParaView create a script that will reproduce any visualization">
+<meta name="twitter:title" content="sensei">
+<meta name="twitter:description" content="ISC 2019In 2019, we presented a half-day tutorial on SENSEI at the ISC HPC conference. The course materials are available here:  Slides (PDF, 57 MB) Virtual machine disk image (OVA, 8.9GB)  The disk i">
   <!-- Google Analytics -->
   
 </head>
@@ -82,32 +82,37 @@
     <div id="content-wrap">
   <div id="content" class="wrapper">
     <div id="content-inner">
-      <article class="article-container" itemscope="" itemtype="http://schema.org/Article">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
         <div class="article-inner">
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">Configuring Catalyst Python Scripts</h1>
+                <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>If you are willing to link your simulation to a Python-enabled
-build of ParaView/Catalyst (this does increase binary size),
-you can have ParaView create a script that will reproduce any
-visualization pipeline from ParaView and execute it on each timestep in
-your simulation in situ.</p>
-<p>If your simulation is instrumented to use sensei’s <code>ConfigurableAnalysis</code>, then you can
-use XML like the following to configure a slice:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sensei</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">analysis</span> <span class="attr">type</span>=<span class="string">"catalyst"</span> <span class="attr">enabled</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">pipeline</span>=<span class="string">"pythonscript"</span> <span class="attr">filename</span>=<span class="string">"/path/to/visualization.py"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sensei</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>To generate the <code>visualization.py</code> script,
-run ParaView, load an example file containing some data from your simulation,
-create the visualization you want and then save a Python state file.
-You will then edit the state file.</p>
-<p><strong>To Do</strong>: Describe how to edit the file into a coprocessing script.</p>
+                <h1 id="ISC-2019" class="article-heading"><a href="#ISC-2019" class="headerlink" title="ISC 2019"></a>ISC 2019<a class="article-anchor" href="#ISC-2019" aria-hidden="true"></a></h1><p>In 2019, we presented a <a href="https://2019.isc-program.com/presentation/?id=tut141&amp;sess=sess126" target="_blank" rel="noopener">half-day tutorial</a>
+on SENSEI at the <a href="https://www.isc-hpc.com/" target="_blank" rel="noopener">ISC HPC conference</a>.
+The <a href="https://data.kitware.com/#collection/5a007cb58d777f31ac64ddfd/folder/5cf7f50f8d777f072b15eae5" target="_blank" rel="noopener">course materials</a>
+are available here:</p>
+<ul>
+<li><a href="https://data.kitware.com/api/v1/item/5cf7f5268d777f072b15eaf1/download" target="_blank" rel="noopener">Slides (PDF, 57 MB)</a></li>
+<li><a href="https://data.kitware.com/api/v1/item/5cf7f5268d777f072b15eaf5/download" target="_blank" rel="noopener">Virtual machine disk image (OVA, 8.9GB)</a></li>
+</ul>
+<p>The disk image is based on Ubuntu 18.04 and can be used with VirtualBox to try SENSEI out
+without having to build it yourself.
+However, once you decide to use it with your simulation,
+you should build it yourself to avoid the overhead of a virtual machine.</p>
+<p>For those who attended the tutorial at ISC,
+we also had temporary accounts and a small reservation set up on
+<a href="https://www.nersc.gov/users/computational-systems/cori/" target="_blank" rel="noopener">Cori @ NERSC, a real supercomputer,</a>
+that you could use to try out SENSEI during the tutorial!
+We have found this a useful way to provide access to SENSEI
+without large downloads.</p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2018-10-25T03:30:47.779Z" itemprop="dateModified">Last updated: 2018-10-25</time>
-                
+                <time class="article-footer-updated" datetime="2019-06-05T17:29:43.630Z" itemprop="dateModified">Last updated: 2019-06-05</time>
+                <a href="sc18.html" class="article-footer-prev" title="Supercomputing 2018"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
             </div>
@@ -115,14 +120,14 @@ You will then edit the state file.</p>
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ISC-2019"><span class="toc-text">ISC 2019</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"></div>
+  <div class="inner"><strong class="sidebar-title">Supercomputing Conference</strong><a href="sc17.html" class="sidebar-link">Supercomputing 2017</a><a href="sc18.html" class="sidebar-link">Supercomputing 2018</a><strong class="sidebar-title">ISC High Performace Computing</strong><a href="isc19.html" class="sidebar-link current">ISC-HPC 2019</a></div>
 </aside>
     </div>
   </div>
@@ -150,12 +155,12 @@ You will then edit the state file.</p>
       </li>
     </ul>
     
-      
+      <strong class="mobile-nav-title">Supercomputing Conference</strong><a href="sc17.html" class="mobile-nav-link">Supercomputing 2017</a><a href="sc18.html" class="mobile-nav-link">Supercomputing 2018</a><strong class="mobile-nav-title">ISC High Performace Computing</strong><a href="isc19.html" class="mobile-nav-link current">ISC-HPC 2019</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
-    <select id="mobile-lang-select" data-canonical="">
+    <select id="mobile-lang-select" data-canonical>
       
         <option value="en" selected>English</option>
       
