@@ -1,5 +1,4 @@
 // mandelbrot example adapted from VisIt Libsim examples.
- 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -16,9 +15,8 @@
 #ifdef ENABLE_SENSEI
 #include <vtkNew.h>
 #include <vtkSmartPointer.h>
-
-#include <timer/Timer.h>
 #include <ConfigurableAnalysis.h>
+#include <Timer.h>
 #include "MandelbrotDataAdaptor.h"
 #endif
 
@@ -532,12 +530,16 @@ handle_command_line(int argc, char **argv, simulation_data *sim,
     }
 }
 
-void pause()
+// TODO -- remove or fix??
+// this function should be renamed, as gcc has one with same name
+// and it now breaks the build. It is not currently used, so I
+// commented it out for now.
+/*void pause()
 {
     FILE *f = NULL;
     while((f = fopen("pause.txt", "rt")) == NULL);
     fclose(f);
-}
+}*/
 
 //*****************************************************************************
 //
@@ -571,9 +573,9 @@ int main(int argc, char **argv)
     handle_command_line(argc, argv, &sim, max_iter, config_file);
 
 #ifdef ENABLE_SENSEI
-    timer::Initialize();
+    sensei::Timer::Initialize();
 
-    timer::MarkStartEvent("mandelbrot::initialize");
+    sensei::Timer::MarkStartEvent("mandelbrot::initialize");
     // Initialize in situ
     vtkSmartPointer<MandelbrotDataAdaptor> dataAdaptor;
     dataAdaptor = vtkSmartPointer<MandelbrotDataAdaptor>::New();
@@ -584,7 +586,7 @@ int main(int argc, char **argv)
     analysisAdaptor = vtkSmartPointer<sensei::ConfigurableAnalysis>::New();
     analysisAdaptor->SetCommunicator(MPI_COMM_WORLD);
     analysisAdaptor->Initialize(config_file);
-    timer::MarkEndEvent("mandelbrot::initialize");
+    sensei::Timer::MarkEndEvent("mandelbrot::initialize");
 #endif
     //pause();
 
@@ -606,7 +608,7 @@ int main(int argc, char **argv)
     // Iterate.
     for(sim.cycle = 0; sim.cycle < max_iter; ++sim.cycle)
     {
-        timer::MarkStartTimeStep(sim.cycle, sim.time);
+        sensei::Timer::MarkStartTimeStep(sim.cycle, sim.time);
         if(sim.par_rank == 0)
         {
             std::cout << "Simulating time step: cycle=" << sim.cycle
@@ -646,7 +648,7 @@ int main(int argc, char **argv)
         sim.patch.nx = NX;
         sim.patch.ny = NY;
 #ifdef ENABLE_SENSEI
-        timer::MarkStartEvent("mandelbrot::compute");
+        sensei::Timer::MarkStartEvent("mandelbrot::compute");
 #endif
         calculate_amr(MPI_COMM_WORLD, &sim);
 
@@ -658,35 +660,35 @@ int main(int argc, char **argv)
         }
 
 #ifdef ENABLE_SENSEI
-        timer::MarkEndEvent("mandelbrot::compute");
+        sensei::Timer::MarkEndEvent("mandelbrot::compute");
 
         // Do in situ 
         dataAdaptor->SetDataTime(sim.time);
         dataAdaptor->SetDataTimeStep(sim.cycle);
-        timer::MarkStartEvent("mandelbrot::analyze");
+        sensei::Timer::MarkStartEvent("mandelbrot::analyze");
         analysisAdaptor->Execute(dataAdaptor.GetPointer());
-        timer::MarkEndEvent("mandelbrot::analyze");
+        sensei::Timer::MarkEndEvent("mandelbrot::analyze");
 
-        timer::MarkStartEvent("mandelbrot::analyze::release-data");
+        sensei::Timer::MarkStartEvent("mandelbrot::analyze::release-data");
         dataAdaptor->ReleaseData();
-        timer::MarkEndEvent("mandelbrot::analyze::release-data");
+        sensei::Timer::MarkEndEvent("mandelbrot::analyze::release-data");
 #endif
 
         sim.time += 0.1;
-        timer::MarkEndTimeStep();
+        sensei::Timer::MarkEndTimeStep();
     }
 
     // Cleanup
     if(sim.log && sim.par_rank == 0)
         log.close();
 #ifdef ENABLE_SENSEI
-    timer::MarkStartEvent("mandelbrot::finalize");
+    sensei::Timer::MarkStartEvent("mandelbrot::finalize");
     analysisAdaptor->Finalize();
     analysisAdaptor = NULL;
     dataAdaptor = NULL;
-    timer::MarkEndEvent("mandelbrot::finalize");
+    sensei::Timer::MarkEndEvent("mandelbrot::finalize");
 
-    timer::Finalize();
+    sensei::Timer::Finalize();
 #endif
     MPI_Finalize();
 
