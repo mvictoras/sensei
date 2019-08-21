@@ -17,7 +17,6 @@
 #include "MeshMetadata.h"
 #include "VTKUtils.h"
 #include <sstream>
-using sensei::MeshMetadataPtr;
 %}
 
 %init %{
@@ -40,7 +39,6 @@ import_array();
  ***************************************************************************/
 VTK_SWIG_INTEROP(vtkObjectBase)
 VTK_SWIG_INTEROP(vtkDataObject)
-VTK_SWIG_INTEROP(vtkInformation)
 
 /****************************************************************************
  * DataAdaptor
@@ -206,7 +204,7 @@ VTK_DERIVED(LibsimAnalysisAdaptor)
  ***************************************************************************/
 #ifdef ENABLE_ADIOS1
 VTK_DERIVED(ADIOS1AnalysisAdaptor)
-SENSEI_DATA_ADAPTOR(ADIOS1DataAdaptor)
+SENSEI_IN_TRANSIT_DATA_ADAPTOR(ADIOS1DataAdaptor)
 #endif
 
 #ifdef ENABLE_VTK_IO
@@ -220,5 +218,12 @@ VTK_DERIVED(VTKPosthocIO)
  ***************************************************************************/
 #ifdef ENABLE_VTK_MPI
 VTK_DERIVED(VTKAmrWriter)
+#endif
+
+/****************************************************************************
+ * SliceExtract
+ ***************************************************************************/
+#ifdef ENABLE_VTK_FILTERS
+VTK_DERIVED(SliceExtract)
 #endif
 #endif

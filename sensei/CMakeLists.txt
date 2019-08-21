@@ -4,10 +4,13 @@ if (ENABLE_SENSEI)
   # senseiCore
   # everything but the Python and configurable analysis adaptors.
   set(senseiCore_sources AnalysisAdaptor.cxx Autocorrelation.cxx
-    BinaryStream.cxx DataAdaptor.cxx DataRequirements.cxx Error.cxx
-    Histogram.cxx MeshMetadata.cxx MeshMetadataMap.cxx
+    BinaryStream.cxx BlockPartitioner.cxx ConfigurableInTransitDataAdaptor.cxx
+    ConfigurablePartitioner.cxx DataAdaptor.cxx DataRequirements.cxx Error.cxx
+    Histogram.cxx InTransitAdaptorFactory.cxx InTransitDataAdaptor.cxx
+    MappedPartitioner.cxx MeshMetadata.cxx MeshMetadataMap.cxx
+    IsoSurfacePartitioner.cxx PlanarPartitioner.cxx PlanarSlicePartitioner.cxx
     ProgrammableDataAdaptor.cxx VTKHistogram.cxx VTKDataAdaptor.cxx
-    VTKUtils.cxx)
+    VTKUtils.cxx XMLUtils.cxx)
 
   set(senseiCore_libs pugixml thread timer sDIY sVTK sMPI)
 
@@ -33,6 +36,12 @@ if (ENABLE_SENSEI)
     list(APPEND senseiCore_libs sADIOS1)
   endif()
 
+ if (ENABLE_HDF5)
+       list(APPEND senseiCore_sources HDF5DataAdaptor.cxx HDF5AnalysisAdaptor.cxx
+        HDF5Schema.cxx)
+    list(APPEND senseiCore_libs sHDF5)
+  endif()
+
   if (ENABLE_VTK_ACCELERATORS)
     list(APPEND senseiCore_sources VTKmContourAnalysis.cxx)
   endif()
@@ -47,6 +56,9 @@ if (ENABLE_SENSEI)
     list(APPEND senseiCore_sources VTKPosthocIO.cxx)
     if (ENABLE_VTK_MPI)
       list(APPEND senseiCore_sources VTKAmrWriter.cxx)
+    endif()
+    if (ENABLE_VTK_FILTERS)
+      list(APPEND senseiCore_sources SliceExtract.cxx)
     endif()
   endif()
 

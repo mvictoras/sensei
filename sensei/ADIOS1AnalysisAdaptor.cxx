@@ -26,7 +26,6 @@
 #include <vtkUnstructuredGrid.h>
 #include <vtkPolyData.h>
 #include <vtkImageData.h>
-#include <vtkInformation.h>
 #include <vtkObjectFactory.h>
 #include <vtkPointData.h>
 #include <vtkSmartPointer.h>
@@ -42,7 +41,7 @@ namespace sensei
 senseiNewMacro(ADIOS1AnalysisAdaptor);
 
 //----------------------------------------------------------------------------
-ADIOS1AnalysisAdaptor::ADIOS1AnalysisAdaptor() : MaxBufferSize(500),
+ADIOS1AnalysisAdaptor::ADIOS1AnalysisAdaptor() : MaxBufferSize(0),
     Schema(nullptr), Method("MPI"), FileName("sensei.bp"), GroupHandle(0)
 {
 }
@@ -73,10 +72,13 @@ bool ADIOS1AnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
 {
   timer::MarkEvent mark("ADIOS1AnalysisAdaptor::Execute");
 
-  // figure out what the simulation can provide
+  // figure out what the simulation can provide. include the full
+  // suite of metadata for the end-point partitioners
   MeshMetadataFlags flags;
   flags.SetBlockDecomp();
   flags.SetBlockSize();
+  flags.SetBlockBounds();
+  flags.SetBlockArrayRange();
 
   MeshMetadataMap mdm;
   if (mdm.Initialize(dataAdaptor, flags))
@@ -158,17 +160,7 @@ bool ADIOS1AnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
 
     // generate a global view of the metadata. everything we do from here
     // on out depends on having the global view.
-    if (!md->GlobalView)
-      {
-      MPI_Comm comm = this->GetCommunicator();
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockOwner);
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockIds);
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockNumPoints);
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockNumCells);
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockCellArraySize);
-      sensei::MPIUtils::GlobalViewV(comm, md->BlockExtents);
-      md->GlobalView = true;
-      }
+    md->GlobalizeView(this->GetCommunicator());
 
     // add to the collection
     objects.push_back(dobj);
@@ -203,11 +195,15 @@ int ADIOS1AnalysisAdaptor::InitializeADIOS1(
     adios_init_noxml(this->GetCommunicator());
 
 #if ADIOS_VERSION_GE(1,11,0)
-    adios_set_max_buffer_size(this->MaxBufferSize);
+    if (this->MaxBufferSize > 0)
+      adios_set_max_buffer_size(this->MaxBufferSize);
+
     adios_declare_group(&this->GroupHandle, "SENSEI", "",
       static_cast<ADIOS_STATISTICS_FLAG>(adios_flag_no));
 #else
-    adios_allocate_buffer(ADIOS_BUFFER_ALLOC_NOW, this->MaxBufferSize);
+    if (this->MaxBufferSize > 0)
+      adios_allocate_buffer(ADIOS_BUFFER_ALLOC_NOW, this->MaxBufferSize);
+
     adios_declare_group(&this->GroupHandle, "SENSEI", "", adios_flag_no);
 #endif
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.6)
 project(sensei)
 
 include(CMakeDependentOption)
@@ -9,6 +9,7 @@ include(build)
 include(threads)
 include(mpi)
 include(adios)
+include(hdf5)
 include(vtk)
 include(libsim)
 include(catalyst)

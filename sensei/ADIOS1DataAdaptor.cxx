@@ -1,18 +1,23 @@
 #include "ADIOS1DataAdaptor.h"
 
+
+#include "MeshMetadata.h"
+#include "Partitioner.h"
+#include "BlockPartitioner.h"
 #include "Error.h"
 #include "Timer.h"
 #include "ADIOS1Schema.h"
 #include "VTKUtils.h"
-#include "MeshMetadata.h"
+#include "XMLUtils.h"
 
 #include <vtkCompositeDataIterator.h>
 #include <vtkDataSetAttributes.h>
-#include <vtkInformation.h>
 #include <vtkMultiBlockDataSet.h>
 #include <vtkObjectFactory.h>
 #include <vtkSmartPointer.h>
 #include <vtkDataSet.h>
+
+#include <pugixml.hpp>
 
 #include <sstream>
 
@@ -42,41 +47,62 @@ ADIOS1DataAdaptor::~ADIOS1DataAdaptor()
 }
 
 //----------------------------------------------------------------------------
-int ADIOS1DataAdaptor::Open(const std::string &method,
-  const std::string& filename)
+int ADIOS1DataAdaptor::SetFileName(const std::string &fileName)
 {
-  size_t n = method.size();
-  std::string lcase_method(n, ' ');
-  for (size_t i = 0; i < n; ++i)
-    lcase_method[i] = tolower(method[i]);
-
-  std::map<std::string, ADIOS_READ_METHOD> readMethods;
-  readMethods["bp"] = ADIOS_READ_METHOD_BP;
-  readMethods["bp_aggregate"] = ADIOS_READ_METHOD_BP_AGGREGATE;
-  readMethods["dataspaces"] = ADIOS_READ_METHOD_DATASPACES;
-  readMethods["dimes"] = ADIOS_READ_METHOD_DIMES;
-  readMethods["flexpath"] = ADIOS_READ_METHOD_FLEXPATH;
-
-  std::map<std::string, ADIOS_READ_METHOD>::iterator it =
-    readMethods.find(lcase_method);
-
-  if (it == readMethods.end())
-    {
-    SENSEI_ERROR("Unsupported read method requested \"" << method << "\"")
-    return -1;
-    }
-
-  return this->Open(it->second, filename);
+  this->Internals->Stream.FileName = fileName;
+  return 0;
 }
 
 //----------------------------------------------------------------------------
-int ADIOS1DataAdaptor::Open(ADIOS_READ_METHOD method, const std::string& fileName)
+int ADIOS1DataAdaptor::SetReadMethod(const std::string &method)
 {
-  timer::MarkEvent mark("ADIOS1DataAdaptor::Open");
+  return this->Internals->Stream.SetReadMethod(method);
+}
 
-  if (this->Internals->Stream.Open(this->GetCommunicator(), method, fileName))
+//----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::SetReadMethod(ADIOS_READ_METHOD method)
+{
+  this->Internals->Stream.ReadMethod = method;
+  return 0;
+}
+
+//----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::Initialize(pugi::xml_node &node)
+{
+  timer::MarkEvent mark("ADIOS1DataAdaptor::Initialize");
+
+  // let the base class handle initialization of the partitioner etc
+  if (this->InTransitDataAdaptor::Initialize(node))
     {
-    SENSEI_ERROR("Failed to open \"" << fileName << "\"")
+    SENSEI_ERROR("Failed to intialize InTransitDataAdaptor")
+    return -1;
+    }
+
+  if (node.attribute("file_name"))
+    this->SetFileName(node.attribute("file_name").value());
+
+  if (node.attribute("read_method") &&
+    this->SetReadMethod(node.attribute("read_method").value()))
+    return -1;
+
+  return 0;
+}
+
+//----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::Finalize()
+{
+  timer::MarkEvent mark("ADIOS1DataAdaptor::Finalize");
+  return 0;
+}
+
+//----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::OpenStream()
+{
+  timer::MarkEvent mark("ADIOS1DataAdaptor::OpenStream");
+
+  if (this->Internals->Stream.Open(this->GetCommunicator()))
+    {
+    SENSEI_ERROR("Failed to open stream")
     return -1;
     }
 
@@ -88,9 +114,15 @@ int ADIOS1DataAdaptor::Open(ADIOS_READ_METHOD method, const std::string& fileNam
 }
 
 //----------------------------------------------------------------------------
-int ADIOS1DataAdaptor::Close()
+int ADIOS1DataAdaptor::StreamGood()
 {
-  timer::MarkEvent mark("ADIOS1DataAdaptor::Close");
+  return this->Internals->Stream.Good();
+}
+
+//----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::CloseStream()
+{
+  timer::MarkEvent mark("ADIOS1DataAdaptor::CloseStream");
 
   this->Internals->Stream.Close();
 
@@ -98,9 +130,9 @@ int ADIOS1DataAdaptor::Close()
 }
 
 //----------------------------------------------------------------------------
-int ADIOS1DataAdaptor::Advance()
+int ADIOS1DataAdaptor::AdvanceStream()
 {
-  timer::MarkEvent mark("ADIOS1DataAdaptor::Advance");
+  timer::MarkEvent mark("ADIOS1DataAdaptor::AdvanceStream");
 
   if (this->Internals->Stream.AdvanceTimeStep())
     return -1;
@@ -150,8 +182,23 @@ int ADIOS1DataAdaptor::UpdateTimeStep()
 }
 
 //----------------------------------------------------------------------------
+int ADIOS1DataAdaptor::GetSenderMeshMetadata(unsigned int id,
+  MeshMetadataPtr &metadata)
+{
+  timer::MarkEvent mark("ADIOS1DataAdaptor::SenderMeshMetadata");
+  if (this->Internals->Schema.GetSenderMeshMetadata(id, metadata))
+    {
+    SENSEI_ERROR("Failed to get metadata for object " << id)
+    return -1;
+    }
+
+  return 0;
+}
+
+//----------------------------------------------------------------------------
 int ADIOS1DataAdaptor::GetNumberOfMeshes(unsigned int &numMeshes)
 {
+  timer::MarkEvent mark("ADIOS1DataAdaptor::GetNumberOfMeshes");
   numMeshes = 0;
   if (this->Internals->Schema.GetNumberOfObjects(numMeshes))
     return -1;
@@ -161,10 +208,51 @@ int ADIOS1DataAdaptor::GetNumberOfMeshes(unsigned int &numMeshes)
 //----------------------------------------------------------------------------
 int ADIOS1DataAdaptor::GetMeshMetadata(unsigned int id, MeshMetadataPtr &metadata)
 {
-  if (this->Internals->Schema.GetMeshMetadata(id, metadata))
+  timer::MarkEvent mark("ADIOS1DataAdaptor::GetMeshMetadata");
+  // check if an analysis told us how the data should land by
+  // passing in reciever metadata
+  if (this->GetReceiverMeshMetadata(id, metadata))
     {
-    SENSEI_ERROR("Failed to get metadata for object " << id)
-    return -1;
+    // layout was set by an analysis. did we do this already?
+    if (this->Internals->Schema.GetReceiverMeshMetadata(id, metadata))
+      {
+      SENSEI_ERROR("Failed to get mesh metadata")
+      this->CloseStream();
+      return -1;
+      }
+
+    // we did this already, return cached layout
+    if (metadata)
+       return 0;
+
+    // first time through. use the partitioner to figure it out.
+    // get the sender layout.
+    MeshMetadataPtr senderMd;
+    if (this->GetSenderMeshMetadata(id, senderMd))
+      {
+      SENSEI_ERROR("Failed to get sender metadata")
+      this->CloseStream();
+      return -1;
+      }
+
+    // get the partitioner, default to the block partitioner
+    PartitionerPtr part = this->GetPartitioner();
+    if (!part)
+      {
+      SENSEI_WARNING("No partitoner specified, using BlockParititoner")
+      part = BlockPartitioner::New();
+      }
+
+    MeshMetadataPtr receiverMd;
+    if (part->GetPartition(this->GetCommunicator(), senderMd, receiverMd))
+      {
+      SENSEI_ERROR("Failed to determine a suitable layout to receive the data")
+      this->CloseStream();
+      }
+
+    // cache and return the new layout
+    this->Internals->Schema.SetReceiverMeshMetadata(id, receiverMd);
+    metadata = receiverMd;
     }
 
   return 0;
@@ -193,6 +281,7 @@ int ADIOS1DataAdaptor::GetMesh(const std::string &meshName,
 int ADIOS1DataAdaptor::AddGhostNodesArray(vtkDataObject *mesh,
   const std::string &meshName)
 {
+  timer::MarkEvent mark("ADIOS1DataAdaptor::AddGhostNodesArray");
   return AddArray(mesh, meshName, vtkDataObject::POINT, "vtkGhostType");
 }
 
@@ -200,6 +289,7 @@ int ADIOS1DataAdaptor::AddGhostNodesArray(vtkDataObject *mesh,
 int ADIOS1DataAdaptor::AddGhostCellsArray(vtkDataObject *mesh,
   const std::string &meshName)
 {
+  timer::MarkEvent mark("ADIOS1DataAdaptor::AddGhostCellsArray");
   return AddArray(mesh, meshName, vtkDataObject::CELL, "vtkGhostType");
 }
 

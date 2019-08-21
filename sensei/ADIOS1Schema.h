@@ -42,7 +42,14 @@ public:
   int ReadMeshMetadata(MPI_Comm comm, InputStream &iStream);
 
   // get cached metadata for object i. Available after ReadMeshMetadata
-  int GetMeshMetadata(unsigned int id, sensei::MeshMetadataPtr &md);
+  // this shows how the data is layed out on the sender side
+  int GetSenderMeshMetadata(unsigned int id, sensei::MeshMetadataPtr &md);
+
+  // set/get cached metadata for object i. this must be set before
+  // reading any data. this controls how thye data is layed out on
+  // the receiver side
+  int GetReceiverMeshMetadata(unsigned int id, sensei::MeshMetadataPtr &md);
+  int SetReceiverMeshMetadata(unsigned int id, sensei::MeshMetadataPtr &md);
 
   // get the number of meshes available. Available after ReadMeshMetadata
   int GetNumberOfObjects(unsigned int &num);
@@ -51,6 +58,10 @@ public:
   int Write(MPI_Comm comm, int64_t fh, unsigned long time_step, double time,
     const std::vector<sensei::MeshMetadataPtr> &metadata,
     const std::vector<vtkCompositeDataSet*> &objects);
+
+  // return true if the file is one of ours and the version the file was
+  // written with is compatible with this revision of the schema
+  bool CanRead(InputStream &iStream);
 
   // creates the mesh matching what is on disk(or stream), including a domain
   // decomposition, but does not read data arrays. If structure_only is true
@@ -72,6 +83,10 @@ private:
   int GetObjectId(MPI_Comm comm,
     const std::string &object_name, unsigned int &doid);
 
+  // generate an array on each block of the object filled with the BlockOwner
+  int AddBlockOwnerArray(MPI_Comm comm, const std::string &name, int centering,
+    const sensei::MeshMetadataPtr &md, vtkCompositeDataSet *dobj);
+
   struct InternalsType;
   InternalsType *Internals;
 };
@@ -80,23 +95,25 @@ private:
 struct InputStream
 {
   InputStream() : File(nullptr),
-    ReadMethod(static_cast<ADIOS_READ_METHOD>(-1)) {}
+    ReadMethod(static_cast<ADIOS_READ_METHOD>(-1)),
+    FileName() {}
 
-  InputStream(ADIOS_FILE *file, ADIOS_READ_METHOD method)
-    : File(file), ReadMethod(method) {}
+  int SetReadMethod(const std::string &method);
 
   int Open(MPI_Comm comm, ADIOS_READ_METHOD method,
     const std::string &fileName);
 
-  // verifies that the file is ours
-  int CanRead(MPI_Comm comm);
+  int Open(MPI_Comm Comm);
 
   int AdvanceTimeStep();
 
   int Close();
 
+  int Good() { return File != nullptr; }
+
   ADIOS_FILE *File;
   ADIOS_READ_METHOD ReadMethod;
+  std::string FileName;
 };
 
 }
