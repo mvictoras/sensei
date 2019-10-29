@@ -33,7 +33,7 @@
 #include "fix_external.h"
 
 #include "lammpsBridge.h"   /* SENSEI bridge */
-#include <Timer.h>
+//#include <Timer.h>
 
 using namespace LAMMPS_NS;
 
@@ -139,10 +139,10 @@ int main(int argc, char **argv) {
 	MPI_Comm_rank(sim_comm, &me);
 	MPI_Comm_size(sim_comm, &nprocs);
 
-    	if (log || shortlog)
-        	timer::Enable(shortlog);
+    	//if (log || shortlog)
+        //	timer::Enable(shortlog);
 
-    	timer::Initialize();
+    	//timer::Initialize();
 
 	/* Initialize SENSEI bridge */
 	if (mpi_multilaunch) {
@@ -208,12 +208,12 @@ int main(int argc, char **argv) {
 	// run for a number of steps
 	for (size_t i = 0; i < sim_steps; ++i) {
 
-		timer::MarkStartTimeStep(i, (float)i);
+		//timer::MarkStartTimeStep(i, (float)i);
 		
 		const char * string = "run 1 pre no post no";
 		lammps_command(lammps, (char *)string);
 
-		timer::MarkEndTimeStep();
+		//timer::MarkEndTimeStep();
 
 	}
 
@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 	lammpsBridge::Finalize();
 	if ( 0 == me ) std::cout << "###### Finalize SENSEI bridge ######\n";
 
-	timer::Finalize();
+	//timer::Finalize();
 
 
 	/* close down MPI */
