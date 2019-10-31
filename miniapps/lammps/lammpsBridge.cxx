@@ -5,18 +5,18 @@
 
 namespace lammpsBridge
 {
-  static vtkSmartPointer<senseiLammps::lammpsDataAdaptor>     GlobalDataAdaptor;
-  static vtkSmartPointer<sensei::ConfigurableAnalysis> GlobalAnalysisAdaptor;
+  static vtkSmartPointer<senseiLammps::lammpsDataAdaptor>  DataAdaptor;
+  static vtkSmartPointer<sensei::ConfigurableAnalysis>     AnalysisAdaptor;
 
 void Initialize(MPI_Comm world, const std::string& config_file)
 { 
-  GlobalDataAdaptor = vtkSmartPointer<senseiLammps::lammpsDataAdaptor>::New();
-  GlobalDataAdaptor->Initialize();
-  GlobalDataAdaptor->SetCommunicator(world);
-  GlobalDataAdaptor->SetDataTimeStep(-1);
+  DataAdaptor = vtkSmartPointer<senseiLammps::lammpsDataAdaptor>::New();
+  DataAdaptor->Initialize();
+  DataAdaptor->SetCommunicator(world);
+  DataAdaptor->SetDataTimeStep(-1);
 
-  GlobalAnalysisAdaptor = vtkSmartPointer<sensei::ConfigurableAnalysis>::New();
-  GlobalAnalysisAdaptor->Initialize(config_file);
+  AnalysisAdaptor = vtkSmartPointer<sensei::ConfigurableAnalysis>::New();
+  AnalysisAdaptor->Initialize(config_file);
 }
 
 void SetData(long ntimestep, int nlocal, int *id, 
@@ -25,22 +25,24 @@ void SetData(long ntimestep, int nlocal, int *id,
              double ysublo, double ysubhi, 
              double zsublo, double zsubhi )
 {
-  GlobalDataAdaptor->AddLAMMPSData( ntimestep, nlocal, id, nghost, type, x, xsublo, xsubhi, ysublo, ysubhi, zsublo, zsubhi);
-  GlobalDataAdaptor->SetDataTimeStep(ntimestep);
-  GlobalDataAdaptor->SetDataTime(ntimestep);
+  DataAdaptor->AddLAMMPSData( ntimestep, nlocal, id, nghost, type, x, \
+                              xsublo, xsubhi, ysublo, ysubhi, zsublo, zsubhi);
+  DataAdaptor->SetDataTimeStep(ntimestep);
+  DataAdaptor->SetDataTime(ntimestep);
 }
 
 void Analyze()
 {
-  GlobalAnalysisAdaptor->Execute(GlobalDataAdaptor.GetPointer());
-  GlobalDataAdaptor->ReleaseData();
+  AnalysisAdaptor->Execute(DataAdaptor.GetPointer());
+  DataAdaptor->ReleaseData();
 }
 
 //-----------------------------------------------------------------------------
 void Finalize()
 {
-  GlobalAnalysisAdaptor = NULL;
-  GlobalDataAdaptor = NULL;
+  AnalysisAdaptor->Finalize();
+  AnalysisAdaptor = NULL;
+  DataAdaptor = NULL;
 }
 
 }	// namespace lammpsBridge
