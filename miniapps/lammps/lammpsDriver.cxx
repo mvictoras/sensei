@@ -16,26 +16,27 @@
 #include <vector>
 #include <iostream>
 #include <mpi.h>
-#include "library.h"        /* this is a LAMMPS include file */
-#include "domain.h"         /* this is a LAMMPS include file */
 
+// LAMMPS include files
+#include "library.h"         
+#include "domain.h"         
 #include "lammps.h"
 #include "modify.h"
 #include "fix.h"
 #include "fix_external.h"
 
-#include "lammpsBridge.h"   /* SENSEI bridge */
-//#include <Timer.h>
+// SENSEI bridge 
+#include "lammpsBridge.h"   
 
 using namespace LAMMPS_NS;
 
 struct Info {
   int me;
   LAMMPS *lmp;
-};
+} globalInfo;
 
-void mycallback(void *ptr, bigint ntimestep,
-		int nlocal, int *id, double **x, double **f) 
+void insituCallback(void *ptr, bigint ntimestep, int nlocal, 
+                    int *id, double **x, double **f) 
 {
   (void) x;
   (void) f;
@@ -61,7 +62,9 @@ void mycallback(void *ptr, bigint ntimestep,
 
   lammpsBridge::SetData(ntimestep, nlocal, id, *nghost, type, all_pos, 
                         xsublo, xsubhi, ysublo, ysubhi, zsublo, zsubhi);
-    
+
+  if (0 == globalInfo.me)
+    std::cout << "###### SENSEI instrumentation: bridge analyze() ######" << std::endl;    
   lammpsBridge::Analyze();
 }
 
@@ -131,23 +134,25 @@ int main(int argc, char **argv)
   MPI_Init(&argc, &argv);
   MPI_Comm sim_comm = MPI_COMM_WORLD;
 
-  int me,nprocs;
-  MPI_Comm_rank(sim_comm, &me);
-  MPI_Comm_size(sim_comm, &nprocs);
+  //int me,nprocs;
+  MPI_Comm_rank(sim_comm, &globalInfo.me);
+  //MPI_Comm_size(sim_comm, &nprocs);
 
-  /* Initialize SENSEI bridge */
-  if ( 0 == me ) std::cout << "###### Initialize SENSEI bridge ######\n";
+  // Initialize SENSEI bridge 
+  if (0 == globalInfo.me) 
+    std::cout << "###### SENSEI instrumentation: initialize bridge ######" << std::endl;
   lammpsBridge::Initialize(sim_comm, sensei_xml );
 
   LAMMPS *lammps;
   lammps_open(lammps_args.size(), lammps_args.data(), sim_comm, (void**)&lammps);
+  globalInfo.lmp = lammps;
 
   /* run the input script thru LAMMPS one line at a time until end-of-file
      driver proc 0 reads a line, Bcasts it to all procs
      (could just send it to proc 0 of comm_lammps and let it Bcast)
      all LAMMPS procs call lammps_command() on the line */
 
-  if (me == 0) 
+  if (0 == globalInfo.me) 
     {
     std::cout << "Loading lammps input: '" << lammps_input << "'\n";
     std::ifstream input(lammps_input.c_str());
@@ -186,6 +191,19 @@ int main(int argc, char **argv)
       }
     }
 
+  // Setup the fix external callback
+  int ifix = lammps->modify->find_fix_by_style("external");
+	
+  // If there's no external fix, abort
+  if (ifix == -1) 
+    {
+    if (0 == globalInfo.me) 
+      std::cout << "You need to add a fix external line to the input file. Abort" << std::endl;
+    return -1;
+    }
+  FixExternal *fix = (FixExternal*)lammps->modify->fix[ifix];
+  fix->set_callback(insituCallback, &globalInfo);
+
   // run for a number of steps
   for (size_t i = 0; i < sim_steps; ++i) 
     {
@@ -193,14 +211,15 @@ int main(int argc, char **argv)
     lammps_command(lammps, (char *)string);
     }
 
-  if ( 0 == me ) std::cout << "###### All LAMMPS timesteps computed at this point ######\n";
+  // all LAMMPS timestep computed
   lammps_close(lammps);
 
-  /* Finalize SENSEI bridge */
-  if ( 0 == me ) std::cout << "###### Finalize SENSEI bridge ######\n";
+  // Finalize SENSEI bridge 
+  if (0 == globalInfo.me) 
+    std::cout << "###### SENSEI instrumentation: finalize bridge ######" << std::endl;
   lammpsBridge::Finalize();
 
-  /* close down MPI */
+  // close down MPI
   MPI_Finalize();
   return 0;
 }
