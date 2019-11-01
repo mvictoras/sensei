@@ -235,7 +235,7 @@ int MeshMetadata::Validate(MPI_Comm comm, const MeshMetadataFlags &requiredFlags
     {
     if (this->MeshType == VTK_OVERLAPPING_AMR)
       {
-      if (this->NumBlocks != int(this->BlockExtents.size()/6))
+      if (this->NumBlocks != int(this->BlockExtents.size()))
         {
         SENSEI_ERROR("BlockExtents are always a global view in AMR data")
         err = true;
@@ -306,6 +306,9 @@ int MeshMetadata::GlobalizeView(MPI_Comm comm)
     MPIUtils::GlobalViewV(comm, this->BlockExtents);
     MPIUtils::GlobalViewV(comm, this->BlockBounds);
     MPIUtils::GlobalViewV(comm, this->BlockArrayRange);
+    MPIUtils::GlobalViewV(comm, this->BlockLevel);
+
+    MPIUtils::GlobalCounts(comm, this->BlocksPerLevel);
 
     STLUtils::ReduceRange(this->BlockBounds, this->Bounds);
     STLUtils::ReduceRange(this->BlockExtents, this->Extent);
