@@ -377,7 +377,8 @@ int lammpsDataAdaptor::GetMeshMetadata(unsigned int id, sensei::MeshMetadataPtr 
 
   if (metadata->Flags.BlockDecompSet())
     {
-    SENSEI_WARNING("lammps data adaptor. Flags.BlockDecompSet()")
+    metadata->BlockOwner.push_back(rank);
+    metadata->BlockIds.push_back(rank);
     }
 
   if (metadata->Flags.BlockArrayRangeSet())
