@@ -100,43 +100,30 @@ int main(int argc, char **argv)
   for (size_t i = 2; i < args.size(); ++i) 
     {
     if (args[i] == "-sensei") 
-      {
       sensei_xml = args[++i];
-      } 
     else if (args[i] == "-n" ) 
-      {
       sim_steps = std::stoull(args[++i]);
-      } 
     else if (args[i] == "-h") 
       {
       std::cout << USAGE << "\n";
       return 0;
       } 
     else if (args[i] == "-log" ) 
-      {
       log = true;
-      } 
     else if (args[i] == "-shortlog" ) 
-      {
       shortlog = true;
-      } 
     else if (args[i] == "-lmp") 
       {
       ++i;
       for (; i < args.size(); ++i) 
-        {
 	lammps_args.push_back(&args[i][0]);
-	}
       break;
       }
     }
 
   MPI_Init(&argc, &argv);
   MPI_Comm sim_comm = MPI_COMM_WORLD;
-
-  //int me,nprocs;
   MPI_Comm_rank(sim_comm, &globalInfo.me);
-  //MPI_Comm_size(sim_comm, &nprocs);
 
   // Initialize SENSEI bridge 
   if (0 == globalInfo.me) 
@@ -147,10 +134,10 @@ int main(int argc, char **argv)
   lammps_open(lammps_args.size(), lammps_args.data(), sim_comm, (void**)&lammps);
   globalInfo.lmp = lammps;
 
-  /* run the input script thru LAMMPS one line at a time until end-of-file
-     driver proc 0 reads a line, Bcasts it to all procs
-     (could just send it to proc 0 of comm_lammps and let it Bcast)
-     all LAMMPS procs call lammps_command() on the line */
+  // run the input script thru LAMMPS one line at a time until end-of-file
+  // driver proc 0 reads a line, Bcasts it to all procs
+  // (could just send it to proc 0 of comm_lammps and let it Bcast)
+  // all LAMMPS procs call lammps_command() on the line
 
   if (0 == globalInfo.me) 
     {
@@ -159,18 +146,19 @@ int main(int argc, char **argv)
     for (std::string line; std::getline(input, line);) 
       {
       int len = line.size();
+      
       // Skip empty lines
       if (len == 0) 
-        {
         continue;
-	}
+      
       MPI_Bcast(&len, 1, MPI_INT, 0, sim_comm);
       MPI_Bcast(&line[0], len, MPI_CHAR, 0, sim_comm);
                 lammps_command(lammps, &line[0]);
       }
-      // Bcast out we're done with the file
-      int len = 0;
-      MPI_Bcast(&len, 1, MPI_INT, 0, sim_comm);
+      
+    // Bcast out we're done with the file
+    int len = 0;
+    MPI_Bcast(&len, 1, MPI_INT, 0, sim_comm);
     } 
   else 
     {
@@ -179,9 +167,7 @@ int main(int argc, char **argv)
       int len = 0;
       MPI_Bcast(&len, 1, MPI_INT, 0, sim_comm);
       if (len == 0) 
-        {
         break;
-	} 
       else 
         {
 	std::vector<char> line(len + 1, '\0');
@@ -211,7 +197,7 @@ int main(int argc, char **argv)
     lammps_command(lammps, (char *)string);
     }
 
-  // all LAMMPS timestep computed
+  // all LAMMPS timesteps computed
   lammps_close(lammps);
 
   // Finalize SENSEI bridge 
@@ -221,5 +207,6 @@ int main(int argc, char **argv)
 
   // close down MPI
   MPI_Finalize();
+
   return 0;
 }
