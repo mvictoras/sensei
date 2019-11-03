@@ -3,6 +3,8 @@
 #include <vtkSmartPointer.h>
 #include <ConfigurableAnalysis.h>
 
+#include <vtkDataObject.h>
+
 namespace lammpsBridge
 {
   static vtkSmartPointer<senseiLammps::lammpsDataAdaptor>  DataAdaptor;
@@ -34,6 +36,11 @@ void SetData(long ntimestep, int nlocal, int *id,
 void Analyze()
 {
   AnalysisAdaptor->Execute(DataAdaptor.GetPointer());
+
+  //vtkDataObject *mesh;
+  //DataAdaptor->GetMesh("atoms", false, mesh);
+  //DataAdaptor->AddArray(mesh, "atoms", vtkDataObject::FIELD_ASSOCIATION_POINTS, "type");
+
   DataAdaptor->ReleaseData();
 }
 
@@ -41,8 +48,8 @@ void Analyze()
 void Finalize()
 {
   AnalysisAdaptor->Finalize();
-  AnalysisAdaptor = NULL;
-  DataAdaptor = NULL;
+  AnalysisAdaptor = nullptr;
+  DataAdaptor = nullptr;
 }
 
 }	// namespace lammpsBridge

@@ -66,6 +66,12 @@ void insituCallback(void *ptr, bigint ntimestep, int nlocal,
   if (0 == globalInfo.me)
     std::cout << "###### SENSEI instrumentation: bridge analyze() ######" << std::endl;    
   lammpsBridge::Analyze();
+
+  if (0 == globalInfo.me)
+    std::cout << "###### SENSEI instrumentation: after bridge analyze() ######" << std::endl;    
+ 
+
+
 }
 
 const static std::string USAGE =
