@@ -2,15 +2,15 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>SENSEI in situ | sensei</title>
+  <title>sensei</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://kitware.github.io/sensei/learn-more/index.html">
+  <link rel="canonical" href="https://kitware.github.io/sensei/tutorials/sc19.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://kitware.github.io/sensei/learn-more/index.html">
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/sensei/tutorials/sc19.html">
     
   
   <!-- Icon -->
@@ -39,17 +39,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="sensei">
   <!-- Open Graph -->
-  <meta name="description" content="OverviewThis project takes aim at a set of research challenges for enabling scientific knowledge discovery within the context of in situ processing at extreme-scale concurrency.  This work is motivate">
+  <meta name="description" content="Supercomputing 2019In 2019, we are presenting a tutorial on SENSEI on Sunday, November 17th. See the SC19 program for details. The course materials are now available:  slides (PDF, 53 MiB) and a virtu">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SENSEI in situ">
-<meta property="og:url" content="https://kitware.github.io/sensei/learn-more/index.html">
+<meta property="og:title" content="sensei">
+<meta property="og:url" content="https://kitware.github.io/sensei/tutorials/sc19.html">
 <meta property="og:site_name" content="sensei">
-<meta property="og:description" content="OverviewThis project takes aim at a set of research challenges for enabling scientific knowledge discovery within the context of in situ processing at extreme-scale concurrency.  This work is motivate">
+<meta property="og:description" content="Supercomputing 2019In 2019, we are presenting a tutorial on SENSEI on Sunday, November 17th. See the SC19 program for details. The course materials are now available:  slides (PDF, 53 MiB) and a virtu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T23:45:27.414Z">
+<meta property="og:updated_time" content="2019-11-16T23:45:27.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SENSEI in situ">
-<meta name="twitter:description" content="OverviewThis project takes aim at a set of research challenges for enabling scientific knowledge discovery within the context of in situ processing at extreme-scale concurrency.  This work is motivate">
+<meta name="twitter:title" content="sensei">
+<meta name="twitter:description" content="Supercomputing 2019In 2019, we are presenting a tutorial on SENSEI on Sunday, November 17th. See the SC19 program for details. The course materials are now available:  slides (PDF, 53 MiB) and a virtu">
   <!-- Google Analytics -->
   
 </head>
@@ -87,21 +87,31 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">SENSEI in situ</h1>
+                <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h2 id="Overview" class="article-heading"><a href="#Overview" class="headerlink" title="Overview"></a>Overview<a class="article-anchor" href="#Overview" aria-hidden="true"></a></h2><p>This project takes aim at a set of research challenges for enabling scientific knowledge discovery within the context of in situ processing at extreme-scale concurrency.  This work is motivated by a widening gap between FLOPs and I/O capacity which will make full-resolution, I/O-intensive post hoc analysis prohibitively expensive, if not impossible.</p>
-<p>We focus on new algorithms for analysis, and visualization – topological, geometric, statistical analysis, flow field analysis, pattern detection and matching – suitable for use in an in situ context aimed specifically at enabling scientific knowledge discovery in several exemplar application areas of importance to DOE.</p>
-<p>Complementary to the in situ algorithmic work, we focus on several leading in situ infrastructures, and tackle research questions germane to enabling new algorithms to run at scale across a diversity of existing in situ implementations.</p>
-<p>Our intent is to move the field of in situ processing in a direction where it may ultimately be possible to write an algorithm once, then have it execute in one of several different in situ software implementations.  The combination of algorithmic and infrastructure work is grounded in direct interactions with specific application code teams, all of which are engaged in their own R&amp;D aimed at evolving to the exascale.</p>
-<h2 id="Funding" class="article-heading"><a href="#Funding" class="headerlink" title="Funding"></a>Funding<a class="article-anchor" href="#Funding" aria-hidden="true"></a></h2><p>This work is supported by the Director, Office of Science, Office of Advanced Scientific Computing Research, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231, through the grant “Scalable Analysis Methods and In Situ Infrastructure for Extreme Scale Knowledge Discovery,” program manager Dr. Laura Biven.</p>
-<!-- extra line breaks to prevent footer from obscuring text -->
-<p><br><br><br></p>
+                <h1 id="Supercomputing-2019" class="article-heading"><a href="#Supercomputing-2019" class="headerlink" title="Supercomputing 2019"></a>Supercomputing 2019<a class="article-anchor" href="#Supercomputing-2019" aria-hidden="true"></a></h1><p>In 2019, we are presenting a tutorial on SENSEI on Sunday, November 17th.
+See <a href="https://sc19.supercomputing.org/presentation/?id=tut141&amp;sess=sess199" target="_blank" rel="noopener">the SC19 program</a> for details.
+The course materials are now available:</p>
+<ul>
+<li><a href="https://drive.google.com/open?id=1lvtSIe5GgTkCbeJRudkZf0r5XV1bkUYW" target="_blank" rel="noopener">slides (PDF, 53 MiB)</a> and</li>
+<li>a <a href="https://drive.google.com/open?id=1uF8357yAEy82eKY26doPWr1waNf56YZp" target="_blank" rel="noopener">virtual machine disk image (OVA, 7.3 GiB)</a></li>
+</ul>
+<p>The disk image can be used with VirtualBox to try SENSEI out
+without having to build it yourself.
+However, once you decide to use it with your simulation,
+you should build it yourself to avoid the overhead of a virtual machine.</p>
+<p>For those who attend the tutorial at Supercomputing,
+we plan to have temporary accounts and a small reservation set up on
+<a href="https://www.nersc.gov/systems/cori/" target="_blank" rel="noopener">Cori @ NERSC, a real supercomputer,</a>
+that you can use to try out SENSEI during the tutorial!
+We have found this a useful way to provide access to SENSEI
+without large downloads.</p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2019-11-16T23:45:27.414Z" itemprop="dateModified">Last updated: 2019-11-16</time>
-                <a href="about.html" class="article-footer-next" title="About"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2019-11-16T23:45:27.418Z" itemprop="dateModified">Last updated: 2019-11-16</time>
+                <a href="sc18.html" class="article-footer-prev" title="Supercomputing 2018"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="isc19.html" class="article-footer-next" title="ISC-HPC 2019"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
             </div>
@@ -109,14 +119,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Funding"><span class="toc-text">Funding</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Supercomputing-2019"><span class="toc-text">Supercomputing 2019</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Project</strong><a href="index.html" class="sidebar-link current">Overview</a><a href="about.html" class="sidebar-link">About</a><a href="presentations.html" class="sidebar-link">Presentations</a><a href="papers.html" class="sidebar-link">Papers</a><a href="software.html" class="sidebar-link">Software</a><a href="participants.html" class="sidebar-link">Participants</a></div>
+  <div class="inner"><strong class="sidebar-title">Supercomputing Conference</strong><a href="sc17.html" class="sidebar-link">Supercomputing 2017</a><a href="sc18.html" class="sidebar-link">Supercomputing 2018</a><a href="sc19.html" class="sidebar-link current">Supercomputing 2019</a><strong class="sidebar-title">ISC High Performace Computing</strong><a href="isc19.html" class="sidebar-link">ISC-HPC 2019</a></div>
 </aside>
     </div>
   </div>
@@ -144,7 +154,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Project</strong><a href="index.html" class="mobile-nav-link current">Overview</a><a href="about.html" class="mobile-nav-link">About</a><a href="presentations.html" class="mobile-nav-link">Presentations</a><a href="papers.html" class="mobile-nav-link">Papers</a><a href="software.html" class="mobile-nav-link">Software</a><a href="participants.html" class="mobile-nav-link">Participants</a>
+      <strong class="mobile-nav-title">Supercomputing Conference</strong><a href="sc17.html" class="mobile-nav-link">Supercomputing 2017</a><a href="sc18.html" class="mobile-nav-link">Supercomputing 2018</a><a href="sc19.html" class="mobile-nav-link current">Supercomputing 2019</a><strong class="mobile-nav-title">ISC High Performace Computing</strong><a href="isc19.html" class="mobile-nav-link">ISC-HPC 2019</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
