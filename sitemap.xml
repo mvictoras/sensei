@@ -2,135 +2,135 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kitware.github.io/sensei/tutorials/sc19.html</loc>
-    
-    <lastmod>2019-11-16T23:53:47.188Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/sensei/tutorials/sc18.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.418Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.324Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/sc17.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.418Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.324Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/tutorials/sc19.html</loc>
+    
+    <lastmod>2019-11-17T14:58:09.324Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/index.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.417Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.323Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/tutorials/isc19.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/learn-more/software.html</loc>
-    
-    <lastmod>2019-11-16T23:45:27.416Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.323Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/papers.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.415Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.322Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/participants.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.415Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.322Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/presentations.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.415Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.322Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/learn-more/software.html</loc>
+    
+    <lastmod>2019-11-17T14:58:09.322Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/about.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.414Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.321Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/learn-more/index.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.414Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.321Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/index.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.413Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.320Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/testing.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.413Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/develop/contribute.html</loc>
-    
-    <lastmod>2019-11-16T23:45:27.412Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/develop/index.html</loc>
-    
-    <lastmod>2019-11-16T23:45:27.412Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.320Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/python-analysis.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.412Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/sensei/2018/05/04/20180504-website/</loc>
-    
-    <lastmod>2019-11-16T23:45:27.411Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.320Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/develop/adios-schema.html</loc>
     
-    <lastmod>2019-11-16T23:45:27.411Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.319Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/contribute.html</loc>
+    
+    <lastmod>2019-11-17T14:58:09.319Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/develop/index.html</loc>
+    
+    <lastmod>2019-11-17T14:58:09.319Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/sensei/2018/05/04/20180504-website/</loc>
+    
+    <lastmod>2019-11-17T14:58:09.318Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://kitware.github.io/sensei/2016/04/28/kw-doc/</loc>
     
-    <lastmod>2019-11-16T23:45:27.395Z</lastmod>
+    <lastmod>2019-11-17T14:58:09.304Z</lastmod>
     
   </url>
   
