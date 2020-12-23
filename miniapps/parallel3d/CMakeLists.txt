@@ -1,5 +1,5 @@
 set(sources parallel3d.c histogram.cpp)
-set(libs m sMPI timer)
+set(libs m timer)
 
 if (ENABLE_SENSEI)
   list(APPEND sources DataAdaptor.cxx Bridge.cxx)

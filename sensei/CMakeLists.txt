@@ -8,7 +8,7 @@ if (ENABLE_SENSEI)
     ProgrammableDataAdaptor.cxx VTKHistogram.cxx VTKDataAdaptor.cxx
     VTKUtils.cxx)
 
-  set(senseiCore_libs pugixml thread timer sDIY sVTK sMPI)
+  set(senseiCore_libs pugixml thread timer sDIY sVTK)
 
   if (ENABLE_CONDUIT)
     list(APPEND senseiCore_sources ConduitDataAdaptor.cxx)

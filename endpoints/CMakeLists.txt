@@ -1,6 +1,6 @@
 if(ENABLE_ADIOS)
   add_executable(ADIOSAnalysisEndPoint ADIOSAnalysisEndPoint.cxx)
-  target_link_libraries(ADIOSAnalysisEndPoint PRIVATE opts sensei timer sADIOS sMPI)
+  target_link_libraries(ADIOSAnalysisEndPoint PRIVATE opts sensei timer sADIOS)
 
   install(TARGETS ADIOSAnalysisEndPoint
     RUNTIME DESTINATION bin)

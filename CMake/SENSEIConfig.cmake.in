@@ -58,7 +58,6 @@ else()
 endif()
 
 include(thread)
-include(sMPI)
 include(sVTK)
 include(timer)
 include(pugixml)
